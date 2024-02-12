@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO.Pipes;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,11 +10,11 @@ namespace KtermMonitor.IO.NampedPipe
 {
     internal class NampedPipeClient : IDisposable
     {
-        const string baseName = "KTerm::Monitor;;";
+        const string baseName = "KTerm::Monitor::";
 
         string _pipeName;
 
-        PipeStream _pipeClient = null;
+        NamedPipeClientStream _pipeClient = null;
 
         bool IsConnected => _pipeClient.IsConnected;
 
@@ -42,7 +43,8 @@ namespace KtermMonitor.IO.NampedPipe
         /// </summary>
         private void _connect()
         {
-            _pipeClient = new NamedPipeClientStream(".", _pipeName, PipeDirection.Out, PipeOptions.None);
+            _pipeClient = new NamedPipeClientStream(".", _pipeName, PipeDirection.Out, PipeOptions.Asynchronous, TokenImpersonationLevel.Impersonation);
+            _pipeClient.Connect();
             if (!_pipeClient.IsConnected) return;
         }
 

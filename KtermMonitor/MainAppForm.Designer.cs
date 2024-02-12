@@ -32,7 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.メニューMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.設定SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,16 +68,17 @@
             // メニューMToolStripMenuItem
             // 
             this.メニューMToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.設定SToolStripMenuItem});
+            this._settingsToolStripMenuItem});
             this.メニューMToolStripMenuItem.Name = "メニューMToolStripMenuItem";
             this.メニューMToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.メニューMToolStripMenuItem.Text = "メニュー(&M)";
             // 
-            // 設定SToolStripMenuItem
+            // _settingsToolStripMenuItem
             // 
-            this.設定SToolStripMenuItem.Name = "設定SToolStripMenuItem";
-            this.設定SToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.設定SToolStripMenuItem.Text = "設定(&S)";
+            this._settingsToolStripMenuItem.Name = "_settingsToolStripMenuItem";
+            this._settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this._settingsToolStripMenuItem.Text = "設定(&S)";
+            this._settingsToolStripMenuItem.Click += new System.EventHandler(this._settingsToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -112,7 +113,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem メニューMToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 設定SToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _settingsToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

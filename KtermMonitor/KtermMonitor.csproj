@@ -57,17 +57,30 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\TaskCancelController.cs" />
+    <Compile Include="IO\EventArgs\ReceivedDataEventArgs.cs" />
+    <Compile Include="IO\KShellSerialPort.cs" />
     <Compile Include="IO\NampedPipe\NampedPipeClient.cs" />
+    <Compile Include="IO\NampedPipe\NampedPipeServer.cs" />
     <Compile Include="MainAppForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainAppForm.Designer.cs">
       <DependentUpon>MainAppForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PortSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PortSettingsForm.Designer.cs">
+      <DependentUpon>PortSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainAppForm.resx">
       <DependentUpon>MainAppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PortSettingsForm.resx">
+      <DependentUpon>PortSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
