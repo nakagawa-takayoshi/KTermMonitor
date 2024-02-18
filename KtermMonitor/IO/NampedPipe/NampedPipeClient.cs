@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KtermMonitor.IO.NampedPipe
 {
-    internal class NampedPipeClient : IDisposable
+    public class NampedPipeClient : IDisposable
     {
         const string baseName = "KTerm::Monitor::";
 
@@ -32,7 +32,7 @@ namespace KtermMonitor.IO.NampedPipe
         /// <summary>
         /// リソースの解放
         /// </summary>
-        void IDisposable.Dispose()
+        public void Dispose()
         {
             // パイプの開放
             _pipeDispose();
@@ -55,9 +55,17 @@ namespace KtermMonitor.IO.NampedPipe
         {
             if (_pipeClient == null) return;
             if (!_pipeClient.IsConnected) return;
-            _pipeClient.Close();
 
+            _pipeClient.Close();
             _pipeClient.Dispose();
         }
+
+        public void Send(string message)
+        {
+            if (!_pipeClient.IsConnected) return;
+
+            byte[] buffer = Encoding.ASCII.GetBytes(message);
+            _pipeClient.Write(buffer, 0, buffer.Length);
+        }   
     }
 }

@@ -1,4 +1,5 @@
-﻿using KtermMonitor.IO.NampedPipe;
+﻿using KtermMonitor.IO.EventArgs;
+using KtermMonitor.IO.NampedPipe;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,7 @@ namespace KtermMonitor
             InitializeComponent();
         }
 
-        private void _onReceived(EventArgs e)
+        private void _onReceived(ReceivedDataEventArgs e)
         {
         }
 
@@ -52,7 +53,7 @@ namespace KtermMonitor
         {
             base.OnLoad(e);
 
-            _pipeServer = new NampedPipeServer("Recv", _onReceived);
+            _pipeServer = new NampedPipeServer("COMMANDLINE", _onReceived);
 
         }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KtermMonitor.IO.NampedPipe;
 
 namespace KtermMonitor
 {
@@ -46,10 +47,16 @@ namespace KtermMonitor
                     {
                         var nextIndex = ((ii + 1) + 1);
                         if (args.Length < nextIndex) return;
+
                         StringBuilder sb = new StringBuilder();
                         sb.Append(arg);
-                        sb.Append(" ");
+                        sb.Append(":");
+                        sb.Append("\"");
                         sb.Append(args[nextIndex-1]);
+                        sb.Append("\"");
+
+                        var comandLibePipeClient = new NampedPipeClient("COMMANDLINE");
+                        comandLibePipeClient.Send(sb.ToString());
                         return;
                     }
 

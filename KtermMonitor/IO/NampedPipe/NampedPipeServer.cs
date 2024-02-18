@@ -72,10 +72,10 @@ namespace KtermMonitor.IO.NampedPipe
                     if (0 == readSize) continue;
 
                     var message = Encoding.ASCII.GetString(buffer, 0, readSize);
+                    if (0 < server.InBufferSize) continue;
 
                     _handler?.Invoke(new ReceivedDataEventArgs(message));
 
-                    _waitConnectTask = server.WaitForConnectionAsync(_waitConnectCancellationToken.Token);
                 }
             }
         }
