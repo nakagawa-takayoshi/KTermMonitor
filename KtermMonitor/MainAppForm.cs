@@ -26,8 +26,21 @@ namespace KtermMonitor
             InitializeComponent();
         }
 
-        private void _onReceived(ReceivedDataEventArgs e)
+        private void _onCommandLineReceived(ReceivedDataEventArgs e)
         {
+            var cmdLines = e.ReceivedData.Split(new string[] { @":" }, StringSplitOptions.RemoveEmptyEntries);
+            if (cmdLines.Length < 2) return;
+            if (cmdLines[0] == "-c")
+            {
+                var kShellCommand = cmdLines[1];
+                kShellCommand = kShellCommand.Trim(new char[] { '\"' });
+            }
+
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => { this.Activate(); }));
+            }
+            
         }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
@@ -53,7 +66,7 @@ namespace KtermMonitor
         {
             base.OnLoad(e);
 
-            _pipeServer = new NampedPipeServer("COMMANDLINE", _onReceived);
+            _pipeServer = new NampedPipeServer("COMMANDLINE", _onCommandLineReceived);
 
         }
 
